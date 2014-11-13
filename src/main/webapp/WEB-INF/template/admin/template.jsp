@@ -16,8 +16,8 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="<c:url value="/cms/dashboard"/>">Dashboard</a>
-          <a class="blog-nav-item" href="<c:url value="/cms/new_note" />">New note</a>
+          <a class="blog-nav-item active" href="<c:url value="/cms/home"/>">Dashboard</a>
+          <a class="blog-nav-item" href="<c:url value="/cms/note/new" />">New note</a>
           <a class="blog-nav-item" href="<c:url value="/cms/comments"/>">Comments</a>
           <a class="blog-nav-item" href="<c:url value="/cms/account"/>">My account</a>
         </nav>
