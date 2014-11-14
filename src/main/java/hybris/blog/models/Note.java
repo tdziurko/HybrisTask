@@ -12,8 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
 
 
 @Entity(name="notes")
@@ -30,6 +30,7 @@ public class Note implements Serializable {
 	
 	@NotNull
 	@NotBlank
+	@Length(max = 45, message = "The field must be less than 45 characters")
 	private String title;
 
 	@NotNull
@@ -42,6 +43,9 @@ public class Note implements Serializable {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	public long getId(){
+		return this.id;
+	}
 	public User getUser(){
 		return this.user;
 	}

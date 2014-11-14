@@ -1,6 +1,10 @@
 /*
  * Globals
  */
+ 
+ .hello-index{
+ 	text-align: center;
+ }
 .content{
 	margin-top:45px;
 }
@@ -165,4 +169,34 @@ h6, .h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+
+/*
+* Note detail
+*/
+.note-form-box,
+.note-detail-box{
+	width: auto;
+	max-width: 600px;
+	padding: 0px 15px;
+	margin: 0 auto;
+}
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0px 20px;
+    border-bottom: 2px solid #006DBD;
+}
+
+.form-group,
+.note-detail-box .page-header,
+.note-form-box h2{
+	color: #428BCA;	
+}
+
+.note-form-box .error{
+	color: red;
+	display:block;
+}
+.note-form-box textarea{
+	height: 300px;	
 }

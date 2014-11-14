@@ -30,5 +30,14 @@ public class NoteServiceImpl implements NoteService {
 		List<Note> results = query.getResultList();
 	    return results;
 	}
+	
+	public Note findNoteById(long id){
+		Note note = entityManager.find(Note.class, id);
+		return note;
+	}
+
+	public void updateNote(Note note) {
+		//TODO update NOTE
+	}
 
 }
