@@ -12,8 +12,12 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = FulfilledConstraintValidator.class)
 public @interface Fulfilled {
 		
-	String message() default "{Fulfilled}";
-
+	String message();
+	
+	int max();
+	
+	int min() default 1;
+	
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};

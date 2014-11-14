@@ -19,7 +19,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-primary">
 				  <div class="panel-body">
-				    <h2>${note.getTitle()} }</h2>
+				    <h2>${note.getTitle()}</h2>
 						<p>${note.getContent()}</p>
 				  </div>
 				</div>

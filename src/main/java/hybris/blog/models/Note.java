@@ -19,10 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name="notes")
 public class Note implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,11 +27,10 @@ public class Note implements Serializable {
 	private long id;
 	
 	@NotNull
-	@Fulfilled
+	@Fulfilled(max=45, message="Title has to be less than 45 char.")
 	private String title;
 
 	@NotNull
-	@Fulfilled
 	private String content;
 
 	private Date date = new Date();
