@@ -1,5 +1,7 @@
 package hybris.blog.models;
 
+import hybris.blog.models.validators.Fulfilled;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
 
 
 @Entity(name="notes")
@@ -29,11 +30,11 @@ public class Note implements Serializable {
 	private long id;
 	
 	@NotNull
-	@NotBlank
+	@Fulfilled
 	private String title;
 
 	@NotNull
-	@NotBlank
+	@Fulfilled
 	private String content;
 
 	private Date date = new Date();
