@@ -1,5 +1,7 @@
 package hybris.blog.cms.controllers;
 
+import java.util.logging.Logger;
+
 import javax.validation.Valid;
 
 import hybris.blog.models.Note;
@@ -14,7 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import static java.util.logging.Level.OFF;
 @Controller
 @RequestMapping("/cms/")
 public class NoteController {
@@ -51,11 +53,19 @@ public class NoteController {
 		return "cms/note/edit";
 	}
 	
+	private static final Logger LOG = Logger.getLogger(NoteController.class.getName());
+	
 	@RequestMapping(value= "/note/{id}/update", method = RequestMethod.POST)
-	public String editNote(Model model, @Valid Note note,
-			BindingResult result, @PathVariable long id){
+	public String updateNote(@PathVariable long id, Model model, @Valid Note note,
+			BindingResult result){
 		
-		noteService.updateNote(note);
+		//TODO IT IS ODD AND NASTY ! IMPROVE IT !
+		Note persitent = noteService.findNoteById(id);
+		
+		persitent.setTitle(note.getTitle());
+		persitent.setContent(note.getContent());
+		
+		noteService.updateNote(persitent);
 		
 		return "redirect:/cms/home";
 	}

@@ -26,6 +26,7 @@ public class Note implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private long id;
 	
 	@NotNull
@@ -39,12 +40,15 @@ public class Note implements Serializable {
 
 	private Date date = new Date();
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id", nullable=false, referencedColumnName="username")
 	private User user;
 	
 	public long getId(){
 		return this.id;
+	}
+	public void setId(long id){
+		this.id = id;
 	}
 	public User getUser(){
 		return this.user;

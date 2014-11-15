@@ -3,6 +3,9 @@ package hybris.blog.models;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -21,12 +24,13 @@ public class User implements Serializable {
 	
 	@Id
 	@NotNull
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String username;
 	@NotNull
 	private String password;
 	private int enabled = 1; //set default value for 1 - relevat with spring security.
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	private List<Note> notes;
 	
 	

@@ -9,6 +9,8 @@
 
 		<h2>Update note !</h2>
 		<form:form action="/HybrisTask/cms/note/${note.id}/update" modelAttribute="note" method="POST"> 
+		   	
+		   	<form:input path="id" cssClass="form-control" type="hidden"/>
 		   
 		    <div class="form-group">
 		   		<form:errors path="title" cssClass="error" />

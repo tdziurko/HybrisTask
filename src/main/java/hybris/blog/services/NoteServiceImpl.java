@@ -37,7 +37,7 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	public void updateNote(Note note) {
-		//TODO update NOTE
+		entityManager.merge(note);
 	}
 
 }
