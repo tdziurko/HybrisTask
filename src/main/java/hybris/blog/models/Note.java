@@ -68,10 +68,7 @@ public class Note implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
+	public Date getDate(){
+		return this.date;
 	}
 }

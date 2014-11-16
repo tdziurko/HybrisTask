@@ -37,7 +37,15 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	public void updateNote(Note note) {
-		entityManager.merge(note);
+		Note noteToPersist = findNoteById(note.getId());
+		noteToPersist.setTitle(note.getTitle());
+		noteToPersist.setContent(note.getContent());
+		entityManager.merge(noteToPersist);
+	}
+
+	public void destroyNoteById(long id) {
+		Note noteToRemove = findNoteById(id);
+		entityManager.remove(noteToRemove);
 	}
 
 }

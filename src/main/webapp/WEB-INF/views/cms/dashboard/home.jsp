@@ -3,7 +3,7 @@
  
 <tiles:insertDefinition name="dashboardTemplate">
     <tiles:putAttribute name="body">
- 
+        
         <div class="body hello-index">
             <h1><i class="glyphicon glyphicon-home"></i> It is Your Home Page</h1>
             <p>Create/read/update your notes - read comment and ... </p>
@@ -16,6 +16,7 @@
 				  <div class="panel-body">
 				  	<h2><a href="<c:url value="/cms/note/${note.id}/edit"/>">${note.title}</a> </h2>
 						<p>${note.content}</p>
+						<div class="push-right"><i class="glyphicon glyphicon-trash tresh" data-remove-url="<c:url value="/cms/note/${note.id}/delete"/>"></i></div>
 				  </div>
 				</div>
 			</div>

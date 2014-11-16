@@ -14,6 +14,8 @@
 	<context:component-scan base-package="hybris.blog" />
  	<mvc:annotation-driven/>
  	
+ 	<import resource="security-context.xml"/>
+ 	
  	<mvc:resources mapping="/resources/**" location="/resources/assets/" />
  	
  	<!-- .jsp, yes, I know, but, pls, don't blame me, it was more reliable in build than 

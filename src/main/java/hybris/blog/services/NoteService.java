@@ -8,4 +8,5 @@ public interface NoteService {
 	public List<Note> getAll();
 	public Note findNoteById(long id);
 	public void updateNote(Note note);
+	public void destroyNoteById(long id);
 }

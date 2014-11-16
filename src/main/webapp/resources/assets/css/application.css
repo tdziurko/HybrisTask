@@ -1,7 +1,9 @@
 /*
  * Globals
  */
- 
+ .hidden{
+ 	display:none;
+ }
  .hello-index{
  	text-align: center;
  }
@@ -198,5 +200,15 @@ h6, .h6 {
 	display:block;
 }
 .note-form-box textarea{
-	height: 300px;	
+	height: 280px;	
+}
+.alert-info {
+    background-image: none !important; 
+}
+.tresh{
+	color: rgba(17, 101, 162, 1) !important;
+}
+.push-right{
+ text-align:right;
+}
 }
