@@ -5,8 +5,8 @@
     <tiles:putAttribute name="body">
         
         <div class="body hello-index">
-            <h1><i class="glyphicon glyphicon-home"></i> It is Your Home Page</h1>
-            <p>Create/read/update your notes - read comment and ... </p>
+            <h1><i class="glyphicon glyphicon-home"></i> It is Your Dashboard</h1>
+            <p>Here you can edit/create notes</p>
   		</div><br/>
         
         <c:forEach items="${notes}" var="note">

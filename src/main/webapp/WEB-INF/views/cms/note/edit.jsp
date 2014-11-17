@@ -7,13 +7,10 @@
     
  	<div class="note-form-box">
 	
-	<div class="alert alert-info alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	  Here, you can edit existing note.
-	</div>
-	
 		<h2>Update note !</h2>
-		<form:form action="/HybrisTask/cms/note/${note.id}/update" modelAttribute="note" method="POST"> 
+		
+		<c:url var="post_url"  value="/cms/note/${note.id}/update" />
+		<form:form action="${post_url}" modelAttribute="note" method="POST"> 
 		   	
 		   	<form:input path="id" cssClass="form-control" type="hidden"/>
 		   
@@ -31,8 +28,19 @@
 	
 		    <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
 		</form:form>
+		
+		
+		
+		<c:forEach items="${comments}" var="comment">
+			<div class="alert alert-info" role="alert">
+				<strong>${comment.email}</strong></br>
+				<p>${comment.content}</p>
+			</div>
+		</c:forEach>
 	
 	</div>
+	
+	
 	      
     </tiles:putAttribute>
 </tiles:insertDefinition>

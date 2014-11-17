@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import static java.util.logging.Level.OFF;
+
+import java.security.Principal;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -25,13 +26,13 @@ public class DashboardController {
 	NoteService noteService;
 	
 	@RequestMapping("/home")
-	public String home(Model model){
-		List<Note> sorted_notes = noteService.getAll();
+	public String home(Model model,Principal principal){
 		
-		//Java 8 is so beautiful :*
-		Collections.sort(sorted_notes, (a,b) -> -(a.getDate().compareTo(b.getDate())));
-		LOG.log(OFF, sorted_notes.get(0).getTitle());
-		model.addAttribute("notes", sorted_notes);
+		String currentUser = principal.getName();
+		
+		List<Note> sortedSotes = noteService.getNewestFromUser(currentUser);
+
+		model.addAttribute("notes", sortedSotes);
 		return "cms/dashboard/home";
 	}
 	

@@ -6,7 +6,9 @@ import java.util.List;
 public interface NoteService {
 	public void add(Note note);
 	public List<Note> getAll();
-	public Note findNoteById(long id);
-	public void updateNote(Note note);
-	public void destroyNoteById(long id);
+	public Note findById(long id);
+	public void update(Note note);
+	public void destroyById(long id);
+	public List<Note> getNewestFromUser(String username);
+	public List<Note> getAllNewest();
 }
