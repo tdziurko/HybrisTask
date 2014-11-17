@@ -33,7 +33,6 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	private List<Note> notes;
 	
-	
 	public User() {}
 
 	public List<Note> getNotes(){

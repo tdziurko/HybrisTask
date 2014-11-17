@@ -29,7 +29,7 @@ public class DashboardController {
 		List<Note> sorted_notes = noteService.getAll();
 		
 		//Java 8 is so beautiful :*
-		Collections.sort(sorted_notes, (a,b) -> -(a.getDate().compareTo(b.getDate())));
+		//Collections.sort(sorted_notes, (a,b) -> -(a.getDate().compareTo(b.getDate())));
 		LOG.log(OFF, sorted_notes.get(0).getTitle());
 		model.addAttribute("notes", sorted_notes);
 		return "cms/dashboard/home";
