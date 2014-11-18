@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name="comments")
@@ -26,6 +27,7 @@ public class Comment implements Serializable{
 	
 	@NotNull
 	@NotBlank
+	@Email
 	private String email;
 	
 	@NotNull

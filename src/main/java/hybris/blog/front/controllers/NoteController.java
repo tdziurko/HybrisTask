@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/notes") 
@@ -28,6 +29,12 @@ public class NoteController {
 		model.addAttribute("comments", relatedComments);
 		
 		return "frontpage/note/show";
+	}
+	
+	@RequestMapping("/filtr/")
+	public @ResponseBody String filtrByDate(){
+		List<Note> notes = noteService.getAll();
+		return "";
 	}
 	
 }

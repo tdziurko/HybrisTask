@@ -33,7 +33,7 @@
 		
 		<c:forEach items="${comments}" var="comment">
 			<div class="alert alert-info" role="alert">
-				<strong>${comment.email}</strong></br>
+				<strong>${comment.email}</strong>
 				<p>${comment.content}</p>
 			</div>
 		</c:forEach>

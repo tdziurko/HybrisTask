@@ -25,8 +25,14 @@ public class NoteServiceImpl implements NoteService {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	DateObserver dateObserver;
+	
 	public void add(Note note) {
 		entityManager.persist(note);
+		
+		//TODO this SHOULD be processed by AOP !
+		dateObserver.findOrCreateMonthUnit(note.getDate());
 	}
 
 	public List<Note> getAll() {

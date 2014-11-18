@@ -1,18 +1,18 @@
 /*
  * Globals
  */
- .hidden{
+.hidden{
  	display:none;
- }
- .hello-index{
- 	text-align: center;
- }
+}
+.hello-index{
+	text-align: center;
+}
 .content{
 	margin-top:45px;
 }
 body {
-  font-family: "Open Sans",Arial,sans-serif;
-  color: #555;
+	font-family: "Open Sans",Arial,sans-serif;
+	color: #555;
 }
 
 h1, .h1,
@@ -216,4 +216,7 @@ h6, .h6 {
 .note-wrapper{
 	margin-bottom: 40px;
 	border-bottom: 1px solid #EEE;
+}
+.form-horizontal .form-group .comment-box{
+	height: 120px;
 }
