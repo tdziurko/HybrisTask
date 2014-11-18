@@ -1,5 +1,6 @@
 package hybris.blog.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +15,9 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity(name="date_observer")
-public class DateObserver {
+public class DateObserver implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

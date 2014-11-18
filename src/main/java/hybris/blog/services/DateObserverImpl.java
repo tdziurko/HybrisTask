@@ -1,24 +1,26 @@
 package hybris.blog.services;
 
 import hybris.blog.cms.controllers.DashboardController;
+import static java.util.logging.Level.OFF;
+import hybris.blog.models.DateObserver;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import static java.util.logging.Level.OFF;
-
 @Component
 @Transactional
-public class DateObserverImpl implements DateObserver {
+public class DateObserverImpl implements DateObserverService {
 	
 	private static final Logger LOG = Logger.getLogger(DashboardController.class.getName());
 	
@@ -31,14 +33,28 @@ public class DateObserverImpl implements DateObserver {
 	 */
 	public void findOrCreateMonthUnit(Date date) {
 		
+		Query query = entityManager.createQuery("SELECT e FROM date_observer e");
+		
 		Date startDay = setDayToFirstOf(date);
 		Date endDay = setDayToLastOf(date);
 		
-		Query query = entityManager
-				.createQuery ("SELECT e FROM date_observer e WHERE e.date BETWEEN :startDate AND :endDate")
-				.setParameter("startDate",startDay)  
-				.setParameter("endDate", endDay); 
-	
+		@SuppressWarnings("unchecked")		
+		List<DateObserver> result = query.getResultList();
+		
+		Iterator<DateObserver> resultIterator = result.iterator();
+		
+		while(resultIterator.hasNext()){
+			DateObserver dateObserver = resultIterator.next();
+			
+			/*
+			 * PROBLEM JEST TAKI, ¯E DATY MAJ¥ RÓ¯NE FORMATY !!
+			 */
+			
+			if(dateObserver.getDate().after(startDay) && dateObserver.getDate().before(endDay)){
+				LOG.log(OFF,"==========---=========");
+			}
+		}
+
 	}
 
 	public List<Date> getFilledMonths() {

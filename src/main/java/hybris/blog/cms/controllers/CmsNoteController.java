@@ -73,6 +73,9 @@ public class CmsNoteController {
 		return "redirect:/cms/home";
 	}
 	
+	/*
+	 * TODO consider, doing it with DeferredResult - +1 to safety
+	 */
 	@RequestMapping(value= "/{id}/delete", method = RequestMethod.POST)
 	public String deleteNote(@PathVariable long id){
 		noteService.destroyById(id);

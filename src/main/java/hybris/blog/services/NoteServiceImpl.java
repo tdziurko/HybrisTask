@@ -26,7 +26,7 @@ public class NoteServiceImpl implements NoteService {
 	UserService userService;
 	
 	@Autowired
-	DateObserver dateObserver;
+	DateObserverService dateObserver;
 	
 	public void add(Note note) {
 		entityManager.persist(note);
