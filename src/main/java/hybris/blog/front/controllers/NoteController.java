@@ -1,6 +1,7 @@
 package hybris.blog.front.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import hybris.blog.models.Comment;
 import hybris.blog.models.Note;
@@ -33,8 +34,15 @@ public class NoteController {
 	
 	@RequestMapping("/filtr/")
 	public @ResponseBody String filtrByDate(){
-		List<Note> notes = noteService.getAll();
 		return "";
+	}
+	
+	@RequestMapping("/avaiable-dates/")
+	public @ResponseBody Set<String> getDates(){
+		
+		Set<String> uniqueDates = noteService.getDateWithPresentNotes();
+		
+		return uniqueDates;
 	}
 	
 }

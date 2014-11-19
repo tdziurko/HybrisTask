@@ -1,8 +1,11 @@
 package hybris.blog.services;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,14 +28,8 @@ public class NoteServiceImpl implements NoteService {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	DateObserverService dateObserver;
-	
 	public void add(Note note) {
 		entityManager.persist(note);
-		
-		//TODO this SHOULD be processed by AOP !
-		dateObserver.findOrCreateMonthUnit(note.getDate());
 	}
 
 	public List<Note> getAll() {
@@ -86,5 +83,22 @@ public class NoteServiceImpl implements NoteService {
 			return arg1.getDate().compareTo(arg0.getDate());
 		}
 	};
+
+	public Set<String> getDateWithPresentNotes() {
+		
+		String pattern = "yyyy.MM.dd";
+		SimpleDateFormat parser = new SimpleDateFormat(pattern);
+
+		List<Note> allNotes = getAll();
+		
+		//TODO Update java version, I don't have type inference :(
+		Set<String> uniqueDates = new HashSet<String>();
+		
+		for(Note note: allNotes){
+			uniqueDates.add(parser.format(note.getDate()));
+		}
+		
+		return uniqueDates;
+	}
 
 }

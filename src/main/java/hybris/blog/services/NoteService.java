@@ -1,7 +1,9 @@
 package hybris.blog.services;
 
 import hybris.blog.models.Note;
+
 import java.util.List;
+import java.util.Set;
 
 public interface NoteService {
 	public void add(Note note);
@@ -11,4 +13,5 @@ public interface NoteService {
 	public void destroyById(long id);
 	public List<Note> getNewestFromUser(String username);
 	public List<Note> getAllNewest();
+	public Set<String> getDateWithPresentNotes();
 }
