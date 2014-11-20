@@ -1,21 +1,31 @@
 package hybris.blog.front.controllers;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 
 import hybris.blog.models.Comment;
 import hybris.blog.models.Note;
 import hybris.blog.services.NoteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 @RequestMapping("/notes") 
 public class NoteController {
+	
+	private static final Logger LOG = Logger.getLogger(NoteController.class.getName());
 	
 	@Autowired
 	NoteService noteService;
@@ -31,10 +41,34 @@ public class NoteController {
 		return "frontpage/note/show";
 	}
 	
-	@RequestMapping("/filtr/")
-	public @ResponseBody String filtrByDate(){
-		List<Note> notes = noteService.getAll();
-		return "";
+	/* API */
+	
+	@RequestMapping(value="/filtr/",method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<Object> filtrByDate(@RequestParam(value="date") String date){
+		
+		/*
+		 * Should be placed regex for date validation
+		 */
+
+		List<Note> targetNotes = null;
+		try {
+			targetNotes = noteService.getNotesFromSpecifiedMonth(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+		return new ResponseEntity<Object>(targetNotes, HttpStatus.OK);
+	}
+	
+	// return available dates, available means that this month contain at least one note
+	@RequestMapping(value="/avaiable-dates/",method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<Object> getAvailableDates(){
+		
+		Set<String> uniqueDates = noteService.getDateWithLeastOneNote();
+		
+		return new ResponseEntity<Object>(uniqueDates, HttpStatus.OK);
 	}
 	
 }

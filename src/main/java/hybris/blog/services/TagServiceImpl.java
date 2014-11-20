@@ -1,22 +1,22 @@
 package hybris.blog.services;
 
-import hybris.blog.models.Comment;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import hybris.blog.models.Tag;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @Transactional
-public class CommentServiceImpl implements CommentService {
+public class TagServiceImpl implements TagService{
 	
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	public void addComment(Comment comment) {
-		entityManager.persist(comment);
+	public void addTag(Tag tag) {
+		entityManager.persist(tag);
 	}
 
 }

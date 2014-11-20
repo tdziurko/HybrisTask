@@ -19,8 +19,11 @@ public class HomeController {
 
 	@RequestMapping(value={"/","/home","/index"})
 	public String homePage(Model model){
+
 		List<Note> notes = noteService.getAllNewest();
+		
 		model.addAttribute("notes", notes);
+		
 		return "frontpage/home";
 	}
 	

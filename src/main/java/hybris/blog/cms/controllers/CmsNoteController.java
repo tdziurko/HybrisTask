@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value={"/cms/note/","/cms/notes/"}) //Change to /notes/ , but alias needed TODO
+@RequestMapping(value={"/cms/note/","/cms/notes/"})
 public class CmsNoteController {	
 	
 	@Autowired

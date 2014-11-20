@@ -1,8 +1,12 @@
 package hybris.blog.services;
 
+import java.text.ParseException;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,12 +16,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import hybris.blog.front.controllers.NoteController;
 import hybris.blog.models.Note;
+import hybris.blog.models.Tag;
 import hybris.blog.models.User;
+import hybris.blog.utils.DateHelper;
+
 
 @Component
 @Transactional
 public class NoteServiceImpl implements NoteService {
+	private static final Logger LOG = Logger.getLogger(NoteController.class.getName());
 	
 	@PersistenceContext
 	EntityManager entityManager;
@@ -25,14 +34,8 @@ public class NoteServiceImpl implements NoteService {
 	@Autowired
 	UserService userService;
 	
-	@Autowired
-	DateObserverService dateObserver;
-	
 	public void add(Note note) {
 		entityManager.persist(note);
-		
-		//TODO this SHOULD be processed by AOP !
-		dateObserver.findOrCreateMonthUnit(note.getDate());
 	}
 
 	public List<Note> getAll() {
@@ -66,7 +69,7 @@ public class NoteServiceImpl implements NoteService {
 		
 		List<Note> notesToSort = targetUser.getNotes();
 		
-		/* I had a critical issue with changing java 7 to java 8 in eclipse, so, i used older version,
+		/* I had a critical issue with changing java 7 to java 8 in eclipse, so, I used older version,
 		 * but it should looks like:
 		 * (a,b) -> a.getDate().compareTo(b.getDate()
 		 */
@@ -81,10 +84,42 @@ public class NoteServiceImpl implements NoteService {
 		return notesToSort;
 	}
 	
+	/*
+	 * I have philosofic problem with this method, it works, but call native query, it is bad practice,
+	 * it uses String instead of java.util.Date - but now, is only solution which works.
+	 */
+	public List<Note> getNotesFromSpecifiedMonth(String date) throws ParseException {
+		
+		String startDate = DateHelper.setDayToFirstOfMonth(date);
+		String endDate = DateHelper.setDayToLastOfMonth(date);
+		
+		@SuppressWarnings("unchecked")
+		List<Note> allTargetNotes = entityManager.createNativeQuery("SELECT * FROM notes  WHERE date BETWEEN :startDate AND :endDate")  
+				  .setParameter("startDate", startDate)  
+				  .setParameter("endDate", endDate)  
+				  .getResultList();
+		
+		return allTargetNotes;
+	}
+	
+	public Set<String> getDateWithLeastOneNote() {
+		
+		List<Note> allNotes = getAll();
+		//TODO Update java version, I don't have type inference :(
+		Set<String> uniqueDates = new HashSet<String>();
+		
+		for(Note note: allNotes){
+			uniqueDates.add(DateHelper.parseDatewithPattern(DateHelper.DATE_FORMAT,note.getDate()));
+		}
+		
+		return uniqueDates;
+	}
+	
 	private Comparator<Note> sortNotesFromNewest = new Comparator<Note>(){
 		public int compare(Note arg0, Note arg1) {
 			return arg1.getDate().compareTo(arg0.getDate());
 		}
 	};
 
+	
 }

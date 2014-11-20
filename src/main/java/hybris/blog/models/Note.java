@@ -2,15 +2,21 @@ package hybris.blog.models;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -47,6 +53,20 @@ public class Note implements Serializable {
 	@OneToMany(mappedBy="note", fetch = FetchType.EAGER)
 	private List<Comment> comments;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "tag_note",
+            joinColumns = @JoinColumn(name = "note_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName="id")
+    )
+	private Set<Tag> tags = new HashSet<Tag>();
+	
+	public void setTags(Set<Tag> tags){
+		this.tags = tags;
+	}
+	public Set<Tag> getTags(){
+		return this.tags;
+	}
 	public String getFormatedDate(){
 		SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd");
 		return simpleDateHere.format(this.date);
