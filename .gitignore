@@ -1,3 +1,10 @@
 target/
 /build
 .settings
+
+# IDEA Files
+.idea
+*.iml
+
+# MacOS Files
+.DS_Store
