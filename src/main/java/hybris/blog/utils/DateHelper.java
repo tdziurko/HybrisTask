@@ -1,5 +1,7 @@
 package hybris.blog.utils;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,9 +15,8 @@ public class DateHelper {
 		LastDay, FirstDay;
 	}
 	
-	public static String parseDatewithPattern(String pattern,Date date){
-		SimpleDateFormat parser = new SimpleDateFormat(pattern);
-		return parser.format(date);
+	public static String parseDatewithPattern(String pattern,Date date) {
+        return DateFormatUtils.format(date, pattern);
 	}
 	/*
 	 * Helper methods that provide possibility to set day of date(String)
