@@ -1,5 +1,12 @@
 <h1>Hybris Task</h1>
 <h1>----------------------------------------------------</h1>
+
+//FIXME: Missing command to create proper database: 
+e.g.:
+
+    create database blog_development character set utf8 collate utf8_polish_ci;
+
+
 call this sql in order to create appropriate tables:<br/>
 <br/>
 CREATE  TABLE users ( <br/>
