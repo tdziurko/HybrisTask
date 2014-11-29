@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
   
-    <definition name="dashboardTemplate" template="/WEB-INF/template/admin/template.jsp">
+    <definition name="dashboardTemplate" template="/WEB-INF/template/admin/dashboard-template.jsp">
 
     </definition>
 </tiles-definitions>
