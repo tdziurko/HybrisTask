@@ -30,6 +30,7 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 
+    //FIXME Unused field
 	private static final Logger LOG = Logger.getLogger(DashboardController.class.getName());
 
 	@RequestMapping(value = "/{noteId}/comment/create", method = RequestMethod.POST)

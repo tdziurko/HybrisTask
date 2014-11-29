@@ -16,7 +16,8 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/cms/")
 public class DashboardController {
-	
+
+    //FIXME Unused field
 	private static final Logger LOG = Logger.getLogger(DashboardController.class.getName());
 	
 	@Autowired
@@ -29,7 +30,8 @@ public class DashboardController {
 	public String home(Model model,Principal principal){
 		
 		String currentUser = principal.getName();
-		
+
+        //FIXME Typo in name
 		List<Note> sortedSotes = noteService.getNewestFromUser(currentUser);
 
 		model.addAttribute("notes", sortedSotes);

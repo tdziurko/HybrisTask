@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+
+//FIXME: Filtering, not filtration :)
+
+//FIXME Is this class used anywhere? :)
 /*
  * DataObserver represents months, which contain one or more notes.
  * It enable efficient search and filtration for notes by date.

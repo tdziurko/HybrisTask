@@ -23,6 +23,8 @@ public class Tag implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+    //FIXME Please use Long instead of long for Database identity. If you use long,
+    // new object in Java has id = 0 but in database it should have id = null.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

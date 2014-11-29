@@ -21,15 +21,20 @@ standard Security Database Schema http://docs.spring.io/spring-security/site/doc
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
+
+    //FIXME It's rather unusual to use String as ID in database, Long is more standard approach
 	@Id
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private String username;
-	@NotNull
+
+    //FIXME You should not keep passwords in plain text, they should be encoded
+    @NotNull
 	private String password;
+    //FIXME Typo in relevant
 	private int enabled = 1; //set default value for 1 - relevat with spring security.
-	
+
+    //FIXME Why eager fetch type?
 	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	private List<Note> notes;
 	

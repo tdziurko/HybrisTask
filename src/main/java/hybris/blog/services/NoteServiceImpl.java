@@ -107,7 +107,8 @@ public class NoteServiceImpl implements NoteService {
 		List<Note> allNotes = getAll();
 		//TODO Update java version, I don't have type inference :(
 		Set<String> uniqueDates = new HashSet<String>();
-		
+
+        //FIXME: Missing space after 'for' and before '{'
 		for(Note note: allNotes){
 			uniqueDates.add(DateHelper.parseDatewithPattern(DateHelper.DATE_FORMAT,note.getDate()));
 		}

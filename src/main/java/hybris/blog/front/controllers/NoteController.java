@@ -24,7 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/notes") 
 public class NoteController {
-	
+
+    //FIXME Unused field
 	private static final Logger LOG = Logger.getLogger(NoteController.class.getName());
 	
 	@Autowired
@@ -42,7 +43,8 @@ public class NoteController {
 	}
 	
 	/* API */
-	
+
+    //FIXME: Typo in filtr
 	@RequestMapping(value="/filtr/",method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Object> filtrByDate(@RequestParam(value="date") String date){
 		
@@ -55,6 +57,8 @@ public class NoteController {
 			targetNotes = noteService.getNotesFromSpecifiedMonth(date);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+            //FIXME This is stronly discouraged, at least log an error and return empty result list.
+            // Now you are printing stackTrace and returning ResponseEntity with null targetNotes.
 			e.printStackTrace();
 		}
 
@@ -63,6 +67,7 @@ public class NoteController {
 	}
 	
 	// return available dates, available means that this month contain at least one note
+    //FIXME Typo in url
 	@RequestMapping(value="/avaiable-dates/",method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Object> getAvailableDates(){
 		

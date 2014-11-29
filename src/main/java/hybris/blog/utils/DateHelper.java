@@ -14,7 +14,8 @@ public class DateHelper {
 	public enum ResetType{
 		LastDay, FirstDay;
 	}
-	
+
+    //FIXME Typo in With
 	public static String parseDatewithPattern(String pattern,Date date) {
         return DateFormatUtils.format(date, pattern);
 	}
@@ -22,14 +23,20 @@ public class DateHelper {
 	 * Helper methods that provide possibility to set day of date(String)
 	 * to first or last, for example, 2014.05.12 => 2014.05.30
 	 */
+    //FIXME Please use JodaTime for that, it is one liner:
+    // http://stackoverflow.com/questions/9711454/how-to-get-the-last-date-of-a-particular-month-with-jodatime
 	public static String setDayToFirstOfMonth(String date) throws ParseException{
 		return resetMonth(date, ResetType.FirstDay);
 	}
-	
+
+    //FIXME Same as above, JodaTime or Jav8 DateTime class which is JodaTime.next() :)
 	public static String setDayToLastOfMonth(String date) throws ParseException{
 		return resetMonth(date, ResetType.LastDay);
 	}
-	
+
+    //FIXME In general Utils classes shouldn't throw any exceptions, it will force class users to handle that.
+    // If you are unsue whether result of the method call will be ok or invalid, hide exception inside and return
+    // Optional.empty or Optional.absent() , either from Google Guava or JDK8
 	private static String resetMonth(String date, ResetType flag) throws ParseException{
 
 		SimpleDateFormat  formatter = new SimpleDateFormat(DATE_FORMAT);

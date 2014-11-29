@@ -16,6 +16,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name="comments")
+//FIXME It should be a space before { sign
 public class Comment implements Serializable{
 
 	private static final long serialVersionUID = 1L;

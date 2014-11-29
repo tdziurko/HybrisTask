@@ -44,6 +44,7 @@ public class Note implements Serializable {
 	@NotBlank
 	private String content;
 
+    //FIXME: date of what? creation, update? Vague field name.
 	private Date date = new Date();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
