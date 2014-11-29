@@ -8,3 +8,5 @@ target/
 
 # MacOS Files
 .DS_Store
+
+# //FIXME Eclipse (or any IDE specific) files shouldn't be in the repository. We're using Maven/Gradle so project works the same from any IDE
